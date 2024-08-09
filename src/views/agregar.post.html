@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../scss/agregar.post.scss">
+</head>
+
+
+
+<header>
+  <nav>
+        <ul class="nav-list">
+          <li><a href="./home.html">home</a></li>
+          <li><button id="out">Log out</button></li>
+        </ul>
+      </nav>
+</header>
+<body>
+
+  
+  <div class="container">
+    <h1 id="form-title">Crear Post</h1>
+    <form id="post-form">
+      <label for="title">Título:</label>
+      <input type="text" id="title" required>
+      <label for="description">Descripción:</label>
+      <textarea id="description" rows="4" required></textarea>
+      <label for="body">Contenido:</label>
+      <textarea id="body" rows="10" required></textarea>
+      <label for="multimediaUrl">URL Multimedia:</label>
+      <input type="url" id="multimediaUrl" required>
+      <label for="date">Fecha de Publicación:</label>
+      <input type="date" id="date" required>
+      <button type="submit" id="submit">Guardar</button>
+      
+    </form>
+  </div>
+  <script type="module" src="../controllers/addPost.ts"></script>
+  <script src="../controllers/card.ts"></script>
+
+  
+</body>
+</html>
+
