@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+  <link rel="stylesheet" href="../scss/registro.scss">
+</head>
+<body>
+  <div class="container py-4 px-3 mx-auto d-flex align-items-center justify-content-center w-50">
+    <main class="form-signin w-100 m-auto">
+      <form>
+        <h1 class="h3 mb-3 fw-normal text-center">Registro</h1>
+  
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword">
+          <label for="floatingPassword">Password</label>
+        </div>
+  
+        <button class="btn btn-primary w-100 py-2" type="submit">Sign up</button>
+        <p class="text-center p-2">Do you have an account? <a href="../../index.html" class="text-decoration-none">Go to signin</a></p>
+      </form>
+    </main>
+  </div>
+</body>
+<script src="../controllers/controller.register.ts"></script>
+</html>

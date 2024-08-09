@@ -1,0 +1,111 @@
+// Variables
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$background-color: #ecf0f1;
+$text-color: #2c3e50;
+$error-color: #e74c3c;
+$border-radius: 8px;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$transition-duration: 0.3s;
+
+// Global Styles
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: $background-color;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.form-signin {
+  background-color: #fff;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+
+  h1 {
+    color: $primary-color;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .form-floating {
+    position: relative;
+    margin-bottom: 20px;
+
+    .form-control {
+      border-radius: $border-radius;
+      padding: 12px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 16px;
+      transition: border-color $transition-duration;
+
+      &:focus {
+        border-color: $primary-color;
+        outline: none;
+      }
+    }
+
+    label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 12px;
+      pointer-events: none;
+      transition: 0.2s ease-in-out;
+      color: #999;
+    }
+
+    .form-control:focus + label {
+      top: -20px;
+      left: 0;
+      font-size: 12px;
+      color: $primary-color;
+    }
+  }
+
+  .btn {
+    background-color: $primary-color;
+    color: #fff;
+    border: none;
+    border-radius: $border-radius;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color $transition-duration;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+  p {
+    text-align: center;
+    margin-top: 20px;
+    color: $text-color;
+
+    a {
+      color: $primary-color;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color $transition-duration;
+
+      &:hover {
+        color: darken($primary-color, 10%);
+      }
+    }
+  }
+}

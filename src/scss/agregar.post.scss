@@ -1,0 +1,136 @@
+// Variables
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$background-color: #f4f6f9;
+$text-color: #2c3e50;
+$error-color: #e74c3c;
+$border-radius: 10px;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$transition-duration: 0.3s;
+
+// Global Styles
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: $background-color;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+}
+
+// Header Styles
+header {
+  background-color: $primary-color;
+  color: #fff;
+  padding: 10px 0;
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+
+      li {
+        margin: 0 15px;
+
+        a {
+          color: #fff;
+          text-decoration: none;
+          font-weight: bold;
+          transition: color $transition-duration;
+
+          &:hover {
+            color: lighten($primary-color, 20%);
+          }
+        }
+
+        button {
+          background: none;
+          border: none;
+          color: #fff;
+          font-weight: bold;
+          cursor: pointer;
+          transition: color $transition-duration;
+
+          &:hover {
+            color: lighten($primary-color, 20%);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Container Styles
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+
+  #form-title {
+    color: $primary-color;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  #post-form {
+    background-color: #fff;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: $text-color;
+    }
+
+    input[type="text"],
+    input[type="url"],
+    input[type="date"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: $border-radius;
+      box-sizing: border-box;
+      font-size: 16px;
+      margin-bottom: 15px;
+      transition: border-color $transition-duration;
+
+      &:focus {
+        border-color: $primary-color;
+        outline: none;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      background-color: $primary-color;
+      color: #fff;
+      border: none;
+      border-radius: $border-radius;
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color $transition-duration;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+}
