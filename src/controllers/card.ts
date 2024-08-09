@@ -1,18 +1,23 @@
 import { Ipost } from "../models/Ipost";
 
+// Espera a que el contenido del DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
+  // Selecciono los elementos del DOM y los asigno a constantes
   const postList = document.getElementById('post-list') as HTMLUListElement;
   const createPostBtn = document.getElementById('create-post') as HTMLButtonElement;
   const loading = document.getElementById('loading') as HTMLDivElement;
 
+  // Función para mostrar el indicador de carga
   function showLoading() {
     if (loading) loading.style.display = 'block';
   }
 
+  // Función para ocultar el indicador de carga
   function hideLoading() {
     if (loading) loading.style.display = 'none';
   }
 
+  // Función asíncrona para obtener posts desde una API
   async function fetchPosts() {
     try {
       const response = await fetch('https://api-posts.codificando.xyz/posts');
@@ -27,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Función asíncrona para verificar la ortografía de un texto
   async function checkSpelling(text: string): Promise<number> {
     const response = await fetch('https://api.languagetool.org/v2/check', {
       method: 'POST',
@@ -37,20 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
     return data.matches.length; // Número de errores encontrados
   }
 
+  // Función asíncrona para calcular la calidad de un post
   async function calculateQuality(post: Ipost): Promise<number> {
-    const prohibitedWords = ['grosería1', 'grosería2'];
+    const prohibitedWords = ['grosería1', 'grosería2']; // Lista de palabras prohibidas
     const contentWords = post.body.split(' ');
-    const errors = contentWords.filter(word => prohibitedWords.includes(word));
-    const spellingErrors = await checkSpelling(post.body);
+    const errors = contentWords.filter(word => prohibitedWords.includes(word)); // Encuentra palabras prohibidas en el contenido
+    const spellingErrors = await checkSpelling(post.body); // Verifica errores ortográficos
     const totalErrors = errors.length + spellingErrors;
-    return 100 - (totalErrors / contentWords.length) * 100;
+    return 100 - (totalErrors / contentWords.length) * 100; // Calcula la calidad en porcentaje
   }
 
+  // Función asíncrona para renderizar los posts en la interfaz
   async function renderPosts(posts: Ipost[]) {
-    postList.innerHTML = '';
+    postList.innerHTML = ''; // Limpia la lista de posts
 
     for (const post of posts) {
-      const postItem = document.createElement('li');
+      const postItem = document.createElement('li'); // Crea un nuevo elemento de lista para el post
       postItem.className = 'post-item';
       postItem.innerHTML = `
         <div class="post-card">
@@ -67,14 +75,14 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
       `;
-      postList.appendChild(postItem);
+      postList.appendChild(postItem); // Añade el elemento de lista a la lista de posts
 
       // Calcular la calidad de forma asíncrona
       calculateQuality(post).then(quality => {
         const qualityClass = quality > 95 ? 'quality-good' : 'quality-bad';
         const qualityElement = postItem.querySelector('.quality span') as HTMLElement;
         qualityElement.textContent = `${quality}%`;
-        qualityElement.className = qualityClass;
+        qualityElement.className = qualityClass; // Aplica la clase según la calidad del post
       });
     }
 
@@ -82,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     assignEventListeners();
   }
 
+  // Función para asignar event listeners a los botones de editar y eliminar
   function assignEventListeners() {
     document.querySelectorAll('.edit').forEach(button => {
       button.addEventListener('click', (event) => {
@@ -98,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Función para cargar los posts desde localStorage y renderizarlos
   function loadPosts() {
     showLoading();
     const posts: Ipost[] = JSON.parse(localStorage.getItem('postArray') || '[]');
@@ -105,10 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
     hideLoading();
   }
 
+  // Event listener para el botón de crear post
   createPostBtn.addEventListener('click', () => {
     window.location.href = '../views/home.html';
   });
 
+  // Función para editar un post
   function editPost(id: number) {
     const posts: Ipost[] = JSON.parse(localStorage.getItem('postArray') || '[]');
     const post = posts.find(p => p.id === id);
@@ -125,20 +137,22 @@ document.addEventListener('DOMContentLoaded', () => {
         post.body = body;
 
         localStorage.setItem('postArray', JSON.stringify(posts));
-        refreshPosts();
+        refreshPosts(); // Actualiza la lista de posts
       }
     }
   }
 
+  // Función para eliminar un post
   function deletePost(id: number) {
     if (confirm('Are you sure you want to delete this post?')) {
       const localPosts: Ipost[] = JSON.parse(localStorage.getItem('postArray') || '[]');
       const updatedLocalPosts = localPosts.filter(post => post.id !== id);
       localStorage.setItem('postArray', JSON.stringify(updatedLocalPosts));
-      refreshPosts();
+      refreshPosts(); // Actualiza la lista de posts
     }
   }
 
+  // Función para actualizar la lista de posts
   function refreshPosts() {
     const localPosts: Ipost[] = JSON.parse(localStorage.getItem('postArray') || '[]');
     fetchPosts().then(apiPosts => {
@@ -147,10 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Función para ver los detalles de un post
   (window as any).viewPost = function (id: number) {
     window.location.href = `post-detail.html?id=${id}`;
   };
 
+  // Función de inicialización
   async function initialize() {
     showLoading();
     const localPosts = JSON.parse(localStorage.getItem('postArray') || '[]');
@@ -160,12 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
     hideLoading();
   }
 
+  // Llamada a la función de inicialización para cargar y mostrar los posts
   initialize();
 });
-
-
-
-
-
-
-

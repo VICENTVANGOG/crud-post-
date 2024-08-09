@@ -18,24 +18,36 @@
       </nav>
 </header>
 <body>
-
-  
-  <div class="container">
+   <div class="container">
+    <!-- Título del formulario -->
     <h1 id="form-title">Crear Post</h1>
+    
+    <!-- Formulario para la creación de un nuevo post -->
     <form id="post-form">
+      <!-- Campo para el título del post -->
       <label for="title">Título:</label>
       <input type="text" id="title" required>
+
+      <!-- Campo para la descripción del post -->
       <label for="description">Descripción:</label>
       <textarea id="description" rows="4" required></textarea>
+
+      <!-- Campo para el contenido del post -->
       <label for="body">Contenido:</label>
       <textarea id="body" rows="10" required></textarea>
+
+      <!-- Campo para la URL multimedia asociada al post -->
       <label for="multimediaUrl">URL Multimedia:</label>
       <input type="url" id="multimediaUrl" required>
+
+      <!-- Campo para la fecha de publicación del post -->
       <label for="date">Fecha de Publicación:</label>
       <input type="date" id="date" required>
+
+      <!-- Botón para enviar el formulario -->
       <button type="submit" id="submit">Guardar</button>
-      
     </form>
+    
   </div>
   <script type="module" src="../controllers/addPost.ts"></script>
   <script src="../controllers/card.ts"></script>
