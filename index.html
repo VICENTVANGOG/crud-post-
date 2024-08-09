@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./src/scss/loggin.scss">
+</head>
+    <div class="container py-4 px-3 mx-auto d-flex align-items-center justify-content-center w-50">
+      <main class="form-signin w-100 m-auto ">
+        <form>
+          <h1 class="h3 mb-3 fw-normal text-center">inicia session </h1>
+      
+          <div class="form-floating">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+      
+          <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+          <p class="text-center p-2 text-center">no tienes una cuenta? <a href="./src/views/register.html" class="text-decoration-none text-center">Create an account</a></p>
+
+        </form>
+      </main>
+    </div>
+    <script type="module" src="./src/controllers/controller.auth.ts"></script>
+  
+</body>
+</html>
